@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Describe Your Need — NeedBridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌉</span>
+        <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      </a>
+      <a href="index.html" class="nav-back">← Change category</a>
+    </div>
+  </nav>
+
+  <!-- STEP INDICATOR -->
+  <div class="step-indicator">
+    <div class="si-inner">
+      <div class="si-step si-done">
+        <div class="si-circle">✓</div>
+        <span>Category</span>
+      </div>
+      <div class="si-line si-line-done"></div>
+      <div class="si-step si-active">
+        <div class="si-circle">2</div>
+        <span>Your Need</span>
+      </div>
+      <div class="si-line"></div>
+      <div class="si-step">
+        <div class="si-circle">3</div>
+        <span>Results</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM SECTION -->
+  <section class="form-section">
+    <div class="form-outer">
+
+      <!-- Category badge (filled by JS) -->
+      <div class="selected-category-badge" id="categoryBadge">
+        <span id="categoryIcon">♿</span>
+        <span id="categoryLabel">Physically Challenged</span>
+      </div>
+
+      <h1 class="form-title">What kind of help are you looking for?</h1>
+      <p class="form-sub">Write in simple words — Hindi-English mix is fine too.</p>
+
+      <!-- Requirement input -->
+      <div class="form-group">
+        <label class="form-label" for="requirement">Describe the requirement</label>
+        <textarea
+          id="requirement"
+          class="form-textarea"
+          rows="4"
+          maxlength="500"
+          placeholder="Example: I need a wheelchair for my father who cannot walk after an accident. He lives in Rajpur Road area."
+        ></textarea>
+        <div class="char-count"><span id="charCount">0</span>/500</div>
+      </div>
+
+      <!-- Example prompts -->
+      <div class="examples-row">
+        <span class="examples-label">Try an example:</span>
+        <button class="example-chip" onclick="fillExample(this)">Wheelchair needed</button>
+        <button class="example-chip" onclick="fillExample(this)">Food support for family</button>
+        <button class="example-chip" onclick="fillExample(this)">Therapy for autistic child</button>
+        <button class="example-chip" onclick="fillExample(this)">Elder care support</button>
+      </div>
+
+      <!-- Location -->
+      <div class="form-group" style="margin-top: 2rem;">
+        <label class="form-label" for="location">Your area in Dehradun</label>
+        <select id="location" class="form-select">
+          <option value="" disabled selected>Select your area</option>
+          <optgroup label="Central Dehradun">
+            <option value="clock_tower">Clock Tower / Paltan Bazaar</option>
+            <option value="rajpur_road">Rajpur Road</option>
+            <option value="gandhi_road">Gandhi Road</option>
+            <option value="astley_hall">Astley Hall</option>
+            <option value="dalanwala">Dalanwala</option>
+          </optgroup>
+          <optgroup label="East Dehradun">
+            <option value="patel_nagar">Patel Nagar</option>
+            <option value="niranjanpur">Niranjanpur</option>
+            <option value="sewla_kalan">Sewla Kalan</option>
+            <option value="mohkampur">Mohkampur</option>
+          </optgroup>
+          <optgroup label="West Dehradun">
+            <option value="raipur">Raipur</option>
+            <option value="nathanpur">Nathanpur</option>
+            <option value="ballupur">Ballupur</option>
+            <option value="kaonli">Kaonli</option>
+          </optgroup>
+          <optgroup label="North Dehradun">
+            <option value="mussoorie_road">Mussoorie Road</option>
+            <option value="malsi">Malsi</option>
+            <option value="sahastradhara">Sahastradhara Road</option>
+          </optgroup>
+          <optgroup label="South Dehradun">
+            <option value="dehradun_cantonment">Cantonment</option>
+            <option value="jhajhra">Jhajhra</option>
+            <option value="doiwala">Doiwala</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- OR GPS -->
+      <div class="gps-row">
+        <span class="or-divider">or</span>
+        <button class="btn-gps" id="gpsBtn" onclick="detectGPS()">
+          <span>📍</span> Use my current location
+        </button>
+        <span class="gps-status" id="gpsStatus"></span>
+      </div>
+
+      <!-- Error message -->
+      <div class="form-error" id="formError" style="display:none;"></div>
+
+      <!-- Submit -->
+      <button class="btn-primary btn-full" id="submitBtn" onclick="submitForm()">
+        Find Matching NGOs →
+      </button>
+
+      <p class="form-note">Your information is not stored. This tool only suggests NGOs.</p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      <p>A student project by Stuti Rawat · B.Tech CS Year 1 · Serving Dehradun</p>
+    </div>
+  </footer>
+
+  <script src="js/form.js"></script>
+</body>
+</html>
