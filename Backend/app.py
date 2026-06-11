@@ -10,16 +10,7 @@ import os
 app = Flask(__name__)
 
 # Allow requests from GitHub Pages frontend and localhost during dev
-CORS(app, resources={
-    r"/api/*": {
-        "origins": [
-            "http://localhost:3000",
-            "http://127.0.0.1:5500",
-            "http://localhost:5500",
-            "https://*.github.io"           # your GitHub Pages URL
-        ]
-    }
-})
+CORS(app)
 
 # Dehradun city center — fallback if no coordinates sent
 DEHRADUN_CENTER = {"lat": 30.3165, "lng": 78.0322}
