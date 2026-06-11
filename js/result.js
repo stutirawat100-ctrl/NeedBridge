@@ -2,7 +2,7 @@
 
 // ─── CONFIG ─────────────────────────────────────────────────────
 // When backend is deployed on Render, replace this URL:
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://needbridge-x1o1.onrender.com';
 // ────────────────────────────────────────────────────────────────
 
 let mapInstance = null;
