@@ -2,7 +2,7 @@
 // Replace YOUR_API_KEY below with your actual Google Maps API key
 // Get a free key at: https://console.cloud.google.com/
 
-const GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyD3nQLzncHbw50aw_65hJlYMGC1fQtOlHw';
 
 // Dynamically load the Maps script so the key lives in one place
 (function loadGoogleMaps() {
