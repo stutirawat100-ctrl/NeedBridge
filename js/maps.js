@@ -4,15 +4,6 @@
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyD3nQLzncHbw50aw_65hJlYMGC1fQtOlHw';
 
-// Dynamically load the Maps script so the key lives in one place
-(function loadGoogleMaps() {
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=initMap`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-})();
-
 // Dehradun area coordinates (centre point fallback)
 const DEHRADUN_CENTER = { lat: 30.3165, lng: 78.0322 };
 
