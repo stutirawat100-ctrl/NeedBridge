@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews — NeedBridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌉</span>
+        <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      </a>
+      <a href="index.html" class="nav-back">← Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div class="reviews-hero">
+    <div class="reviews-hero-inner">
+      <h1>⭐ NGO Reviews</h1>
+      <p>Real experiences from real people. Help others by sharing yours.</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="reviews-page">
+
+    <!-- WRITE A REVIEW CARD -->
+    <div class="review-write-card" id="writeReviewCard">
+      <div class="rwc-header">
+        <span class="rwc-icon">✍️</span>
+        <div>
+          <h2>Write a Review</h2>
+          <p>Select an NGO and share your experience</p>
+        </div>
+      </div>
+
+      <!-- NGO Selector -->
+      <div class="form-group">
+        <label class="form-label">Select NGO</label>
+        <select id="ngoSelect" class="form-select" onchange="onNgoSelect()">
+          <option value="" disabled selected>Choose an NGO to review...</option>
+        </select>
+      </div>
+
+      <!-- Write Review Button -->
+      <button class="btn-write-review" id="writeReviewBtn" onclick="openReviewModal()" disabled>
+        ✍️ Write My Review
+      </button>
+    </div>
+
+    <!-- ALL REVIEWS SECTION -->
+    <div class="all-reviews-section">
+      <h2 class="section-heading">All Reviews <span id="reviewCount" class="review-count-badge">0</span></h2>
+
+      <!-- Filter by NGO -->
+      <div class="filter-row">
+        <span class="filter-label">Filter by:</span>
+        <select id="filterNgo" class="filter-select" onchange="filterReviews()">
+          <option value="all">All NGOs</option>
+        </select>
+        <select id="filterStars" class="filter-select" onchange="filterReviews()">
+          <option value="all">All Ratings</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+          <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+          <option value="3">⭐⭐⭐ 3 Stars</option>
+          <option value="2">⭐⭐ 2 Stars</option>
+          <option value="1">⭐ 1 Star</option>
+        </select>
+      </div>
+
+      <!-- Reviews container -->
+      <div id="allReviewsContainer">
+        <div class="reviews-loading">
+          <div class="loader-ring"></div>
+          <p>Loading reviews...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       DISCLAIMER MODAL
+  ══════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="disclaimerModal">
+    <div class="modal-box disclaimer-box">
+      <div class="disclaimer-icon">⚠️</div>
+      <h2>Before You Write</h2>
+      <p class="disclaimer-ngo-name" id="disclaimerNgoName"></p>
+      <ul class="disclaimer-list">
+        <li>✅ Only share genuine, first-hand experiences</li>
+        <li>✅ Be respectful and constructive</li>
+        <li>❌ Do not post fake, misleading, or offensive content</li>
+        <li>❌ Do not share personal contact information</li>
+      </ul>
+      <p class="disclaimer-note">
+        By proceeding, you confirm that your review is authentic and based on your real experience with this NGO.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('disclaimerModal')">Cancel</button>
+        <button class="btn-primary" onclick="proceedToReview()">I Understand, Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       WRITE REVIEW MODAL
+  ══════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-box review-box">
+      <button class="modal-close" onclick="closeModal('reviewModal')">✕</button>
+
+      <h2 class="review-modal-title">Your Review</h2>
+      <p class="review-modal-ngo" id="reviewModalNgoName"></p>
+
+      <!-- Star Rating -->
+      <div class="star-section">
+        <label class="form-label">Your Rating</label>
+        <div class="star-picker" id="starPicker">
+          <span class="star" data-val="1" onclick="setStar(1)">★</span>
+          <span class="star" data-val="2" onclick="setStar(2)">★</span>
+          <span class="star" data-val="3" onclick="setStar(3)">★</span>
+          <span class="star" data-val="4" onclick="setStar(4)">★</span>
+          <span class="star" data-val="5" onclick="setStar(5)">★</span>
+        </div>
+        <span class="star-label" id="starLabel">Tap a star to rate</span>
+      </div>
+
+      <!-- Your Name -->
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="reviewerName" class="form-input"
+               placeholder="e.g. Rahul Sharma" maxlength="60" />
+      </div>
+
+      <!-- Review Text -->
+      <div class="form-group">
+        <label class="form-label">Your Experience</label>
+        <textarea id="reviewText" class="form-textarea" rows="4" maxlength="600"
+                  placeholder="Describe your experience with this NGO — what help did you get? How was the staff? Would you recommend them?"></textarea>
+        <div class="char-count"><span id="reviewCharCount">0</span>/600</div>
+      </div>
+
+      <!-- Error -->
+      <div class="form-error" id="reviewError" style="display:none;"></div>
+
+      <!-- Submit -->
+      <button class="btn-primary btn-full" id="submitReviewBtn" onclick="submitReview()">
+        Submit Review ⭐
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SUCCESS MODAL
+  ══════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box success-box">
+      <div class="success-icon">🎉</div>
+      <h2>Review Submitted!</h2>
+      <p>Thank you for helping others find the right NGO. Your review has been saved.</p>
+      <button class="btn-primary" onclick="closeModal('successModal')">View All Reviews</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      <p>A student project by Stuti Rawat · B.Tech CS Year 1 · Serving Dehradun</p>
+    </div>
+  </footer>
+
+  <script src="js/reviews.js"></script>
+</body>
+</html>
