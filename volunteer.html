@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — NeedBridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/volunteer.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌉</span>
+        <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      </a>
+      <a href="index.html" class="nav-back">← Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="vol-hero">
+    <div class="vol-hero-inner">
+      <h1>🤝 Get Involved</h1>
+      <p>You don't need money to make a difference. Your time, skills, and care matter.</p>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="vol-tabs-bar">
+    <div class="vol-tabs-inner">
+      <button class="vol-tab active" id="tabVolunteer" onclick="switchTab('volunteer')">
+        🙋 Volunteer / Donate Goods
+      </button>
+      <button class="vol-tab" id="tabLearn" onclick="switchTab('learn')">
+        📚 Learn &amp; Awareness
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TAB 1 — VOLUNTEER
+  ══════════════════════════════════════════ -->
+  <div class="vol-page" id="panelVolunteer">
+
+    <p class="vol-intro">
+      Choose the NGOs you'd like to help, tell us what you can offer, and we'll generate a
+      ready-to-send WhatsApp message so you can reach out directly.
+    </p>
+
+    <!-- STEP 1 — Category -->
+    <div class="vol-card">
+      <div class="vol-card-header">
+        <span class="vol-step-num">1</span>
+        <div>
+          <h2>Which cause do you care about?</h2>
+          <p>Select one or more categories</p>
+        </div>
+      </div>
+      <div class="vol-category-grid" id="categoryGrid">
+        <button class="vol-cat-btn" data-cat="physically_challenged"   onclick="toggleCat(this)">♿ Physically Challenged</button>
+        <button class="vol-cat-btn" data-cat="underprivileged"         onclick="toggleCat(this)">🏠 Underprivileged</button>
+        <button class="vol-cat-btn" data-cat="senior_citizen"          onclick="toggleCat(this)">👴 Senior Citizens</button>
+        <button class="vol-cat-btn" data-cat="differently_abled_child" onclick="toggleCat(this)">🧒 Differently Abled Children</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 — Type of help -->
+    <div class="vol-card">
+      <div class="vol-card-header">
+        <span class="vol-step-num">2</span>
+        <div>
+          <h2>What can you offer?</h2>
+          <p>Select all that apply</p>
+        </div>
+      </div>
+      <div class="vol-help-grid" id="helpGrid">
+        <button class="vol-help-btn" data-help="My time as a volunteer"          onclick="toggleHelp(this)">⏰ My Time</button>
+        <button class="vol-help-btn" data-help="Teaching / tutoring"             onclick="toggleHelp(this)">📖 Teaching / Tutoring</button>
+        <button class="vol-help-btn" data-help="Medical or health support"       onclick="toggleHelp(this)">🏥 Medical Support</button>
+        <button class="vol-help-btn" data-help="Food / groceries / ration"       onclick="toggleHelp(this)">🍱 Food / Groceries</button>
+        <button class="vol-help-btn" data-help="Clothes / household items"       onclick="toggleHelp(this)">👕 Clothes / Items</button>
+        <button class="vol-help-btn" data-help="Assistive devices (wheelchair, crutches, etc.)" onclick="toggleHelp(this)">♿ Assistive Devices</button>
+        <button class="vol-help-btn" data-help="Skills (IT, art, music, sports)" onclick="toggleHelp(this)">🎨 Skills / Workshops</button>
+        <button class="vol-help-btn" data-help="Driving / transportation help"   onclick="toggleHelp(this)">🚗 Transport Help</button>
+        <button class="vol-help-btn" data-help="Companionship for elderly"       onclick="toggleHelp(this)">🤗 Companionship</button>
+        <button class="vol-help-btn" data-help="Financial donation"              onclick="toggleHelp(this)">💰 Financial Donation</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 — Your details -->
+    <div class="vol-card">
+      <div class="vol-card-header">
+        <span class="vol-step-num">3</span>
+        <div>
+          <h2>Your details</h2>
+          <p>So the NGO knows who's reaching out</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="volName" class="form-input" placeholder="e.g. Priya Sharma" maxlength="60" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Phone (optional)</label>
+        <input type="tel" id="volPhone" class="form-input" placeholder="e.g. 9876543210" maxlength="15" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Anything else you'd like to say? <span class="form-optional">(optional)</span></label>
+        <textarea id="volNote" class="form-textarea" rows="3" maxlength="300"
+          placeholder="e.g. I'm available on weekends, I can drive, I speak Hindi and English..."></textarea>
+      </div>
+      <div class="form-error" id="volError" style="display:none;"></div>
+      <button class="btn-primary btn-full" onclick="generateContacts()">
+        Find NGOs &amp; Get WhatsApp Links →
+      </button>
+    </div>
+
+    <!-- RESULTS — NGO Contact Cards -->
+    <div id="volResults" style="display:none;">
+      <h2 class="vol-results-title">📋 NGOs You Can Reach Out To</h2>
+      <p class="vol-results-sub">
+        Click the WhatsApp button — your message is already filled in. Just press Send!
+      </p>
+      <div id="volNgoCards"></div>
+      <div class="vol-disclaimer">
+        ℹ️ NeedBridge is not affiliated with these NGOs. You are contacting them directly.
+        Please be respectful and genuine in your outreach.
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       TAB 2 — LEARN & AWARENESS
+  ══════════════════════════════════════════ -->
+  <div class="vol-page" id="panelLearn" style="display:none;">
+
+    <p class="vol-intro">
+      Understanding the challenges faced by each group helps you support them better —
+      and helps others know where to turn.
+    </p>
+
+    <!-- PHYSICALLY CHALLENGED -->
+    <div class="learn-card">
+      <div class="learn-card-header lch-blue">
+        <span class="learn-icon">♿</span>
+        <h2>Physically Challenged</h2>
+      </div>
+      <div class="learn-body">
+        <p class="learn-para">
+          Persons with physical disabilities face barriers not just of mobility but of access — to
+          public spaces, education, healthcare, and employment. In India, nearly 2.68 crore people
+          live with some form of disability (Census 2011), yet infrastructure and awareness remain
+          deeply inadequate, especially in Tier-2 cities like Dehradun.
+        </p>
+        <h4 class="learn-subhead">Key Government Schemes</h4>
+        <ul class="learn-list">
+          <li><strong>ADIP Scheme</strong> (Assistance to Disabled Persons) — provides free assistive devices like wheelchairs, crutches, hearing aids, and prosthetics to persons with disabilities below the poverty line.</li>
+          <li><strong>NHFDC</strong> (National Handicapped Finance & Development Corporation) — provides low-interest loans for self-employment and skill development.</li>
+          <li><strong>Rights of Persons with Disabilities Act, 2016</strong> — guarantees 5% reservation in government jobs, free education up to age 18, and accessibility norms for public buildings.</li>
+          <li><strong>Unique Disability ID (UDID) Card</strong> — a single card to access all disability-related government benefits. Register at <em>swavlambancard.gov.in</em>.</li>
+          <li><strong>Disability Pension (Uttarakhand)</strong> — eligible persons may receive monthly assistance under the state social welfare department.</li>
+        </ul>
+        <div class="learn-tip">💡 Tip for volunteers: Help families apply for UDID cards — many eligible persons in Dehradun don't have one and miss out on all benefits.</div>
+      </div>
+    </div>
+
+    <!-- UNDERPRIVILEGED -->
+    <div class="learn-card">
+      <div class="learn-card-header lch-amber">
+        <span class="learn-icon">🏠</span>
+        <h2>Underprivileged Families</h2>
+      </div>
+      <div class="learn-body">
+        <p class="learn-para">
+          Underprivileged families in Dehradun often include daily wage workers, migrant labourers
+          from rural Uttarakhand, and those displaced by natural disasters. Food insecurity,
+          children dropping out of school, and lack of access to healthcare are the most common
+          challenges they face. A family earning below ₹10,000/month in an urban area like
+          Dehradun is considered Below Poverty Line (BPL).
+        </p>
+        <h4 class="learn-subhead">Key Government Schemes</h4>
+        <ul class="learn-list">
+          <li><strong>PM Garib Kalyan Anna Yojana (PMGKAY)</strong> — provides 5 kg of free food grain per person per month to families with a ration card. Ensure the family has an active ration card.</li>
+          <li><strong>PM Awas Yojana (Urban)</strong> — subsidised housing for BPL families in urban areas.</li>
+          <li><strong>Ayushman Bharat (PM-JAY)</strong> — free health insurance up to ₹5 lakh per year for eligible BPL families. Check eligibility at <em>pmjay.gov.in</em>.</li>
+          <li><strong>Mid-Day Meal Scheme</strong> — free nutritious meals for children in government schools (Classes 1–8).</li>
+          <li><strong>MGNREGS (Mahatma Gandhi NREGA)</strong> — guarantees 100 days of paid work per year per household in rural areas; some urban equivalents exist under state schemes.</li>
+          <li><strong>PM Ujjwala Yojana</strong> — free LPG connection for BPL families to stop dependence on wood-fire cooking.</li>
+        </ul>
+        <div class="learn-tip">💡 Tip for volunteers: Helping a family apply for Ayushman Bharat or a ration card can change their lives significantly — these are high-impact, low-effort acts.</div>
+      </div>
+    </div>
+
+    <!-- SENIOR CITIZENS -->
+    <div class="learn-card">
+      <div class="learn-card-header lch-green">
+        <span class="learn-icon">👴</span>
+        <h2>Senior Citizens</h2>
+      </div>
+      <div class="learn-body">
+        <p class="learn-para">
+          India's elderly population (60+) is projected to reach 34 crore by 2050. Many senior
+          citizens in Dehradun live alone — either because their children have migrated to metro
+          cities or because of family breakdown. Beyond physical health needs, social isolation and
+          loneliness are serious mental health concerns. Elder abuse (financial, emotional, physical)
+          is also significantly underreported.
+        </p>
+        <h4 class="learn-subhead">Key Government Schemes</h4>
+        <ul class="learn-list">
+          <li><strong>Indira Gandhi National Old Age Pension Scheme (IGNOAPS)</strong> — monthly pension of ₹200–₹500 for BPL persons aged 60+. Apply at the local gram panchayat or urban local body.</li>
+          <li><strong>Rashtriya Vayoshri Yojana</strong> — provides free assistive devices (spectacles, hearing aids, walking sticks, wheelchairs) to senior citizens below the poverty line.</li>
+          <li><strong>Senior Citizens' Savings Scheme (SCSS)</strong> — 8%+ interest savings scheme exclusively for persons above 60, offered through post offices and banks.</li>
+          <li><strong>Maintenance and Welfare of Parents and Senior Citizens Act, 2007</strong> — children are legally obligated to maintain parents. Senior citizens can file a complaint if neglected; Maintenance Tribunals exist for this.</li>
+          <li><strong>Ayushman Bharat (AB-PMJAY)</strong> — senior citizens above 70 are now eligible regardless of income under the 2024 expansion.</li>
+        </ul>
+        <div class="learn-tip">💡 Tip for volunteers: A weekly visit or phone call to an elderly person living alone can prevent depression. Companionship is as important as food or medicine.</div>
+      </div>
+    </div>
+
+    <!-- DIFFERENTLY ABLED CHILDREN -->
+    <div class="learn-card">
+      <div class="learn-card-header lch-purple">
+        <span class="learn-icon">🧒</span>
+        <h2>Differently Abled Children</h2>
+      </div>
+      <div class="learn-body">
+        <p class="learn-para">
+          Children with disabilities — including autism, cerebral palsy, Down syndrome, visual
+          or hearing impairment, and intellectual disabilities — need early intervention to reach
+          their full potential. In India, many families in smaller cities like Dehradun lack
+          awareness that therapy and special education services even exist, leading to delayed
+          support that significantly impacts the child's development.
+        </p>
+        <h4 class="learn-subhead">Key Government Schemes</h4>
+        <ul class="learn-list">
+          <li><strong>Samagra Shiksha Abhiyan (SSA)</strong> — provides free inclusive education, trained resource teachers, assistive devices, and transport support for children with disabilities in government schools.</li>
+          <li><strong>National Trust Act, 1999</strong> — governs welfare of persons with autism, cerebral palsy, mental retardation, and multiple disabilities. Families can apply for a <em>Legal Guardian</em> through the National Trust.</li>
+          <li><strong>NIEPID / NIEPVD / NIMH</strong> — National institutes under the Ministry of Social Justice offer free/subsidised diagnosis, therapy, and training. NIEPVD is physically located in Dehradun (Rajpur Road).</li>
+          <li><strong>Disha Early Intervention Centre (NIEPID)</strong> — free early intervention services for children under 6 with developmental delays.</li>
+          <li><strong>Scholarship for Students with Disabilities (NSP)</strong> — pre-matric and post-matric scholarships available through the National Scholarship Portal at <em>scholarships.gov.in</em>.</li>
+        </ul>
+        <div class="learn-tip">💡 Tip for volunteers: Early diagnosis makes the biggest difference. If you know a family with a child showing developmental delays, encourage them to visit Latika Roy Foundation or NIEPVD for a free assessment.</div>
+      </div>
+    </div>
+
+    <div class="learn-sources">
+      📌 Sources: Ministry of Social Justice & Empowerment, Census of India 2011, MOSPI,
+      National Trust India, PM-JAY Official Portal, Uttarakhand State Social Welfare Department.
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-text">Need<span class="logo-accent">Bridge</span></span>
+      <p>A student project by Stuti Rawat · B.Tech CS Year 1 · Serving Dehradun</p>
+      <p style="font-size:0.72rem; margin-top:0.3rem; opacity:0.6;">
+        NeedBridge is not affiliated with any listed NGO. Information is publicly sourced.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/volunteer.js"></script>
+</body>
+</html>
