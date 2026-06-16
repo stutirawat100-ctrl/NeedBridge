@@ -158,6 +158,7 @@ function renderResults(results, requirement, category) {
         <div class="ngo-actions">
           <a class="btn-call" href="tel:${ngo.phone}">📞 Call ${ngo.phone}</a>
           <a class="btn-map-link" href="${mapsLink}" target="_blank" rel="noopener">🗺️ View on Map</a>
+          <button class="btn-reviews" onclick="showReviews('${ngo.id}', '${ngo.name}')">⭐ Reviews</button>
         </div>
       </div>
     `;
@@ -258,4 +259,87 @@ function getDemoResults(category) {
 
   // Return top 3 (later the real AI engine will filter by category)
   return allNGOs.slice(0, 3);
+}
+// ─── SHOW REVIEWS POPUP ───────────────────────────────────────
+async function showReviews(ngoId, ngoName) {
+  // Create popup if it doesn't exist yet
+  let popup = document.getElementById('reviewsPopupOverlay');
+  if (!popup) {
+    popup = document.createElement('div');
+    popup.id = 'reviewsPopupOverlay';
+    popup.className = 'reviews-popup-overlay';
+    document.body.appendChild(popup);
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) popup.classList.remove('active');
+    });
+  }
+
+  popup.innerHTML = `
+    <div class="reviews-popup">
+      <div class="rp-header">
+        <h3>⭐ Reviews — ${ngoName}</h3>
+        <button class="rp-close" onclick="document.getElementById('reviewsPopupOverlay').classList.remove('active')">✕</button>
+      </div>
+      <div class="rp-body">
+        <div class="reviews-loading">
+          <div class="loader-ring"></div>
+          <p>Loading reviews...</p>
+        </div>
+      </div>
+    </div>
+  `;
+  popup.classList.add('active');
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/reviews/${ngoId}`);
+    const data = await res.json();
+
+    const body = popup.querySelector('.rp-body');
+
+    if (data.count === 0) {
+      body.innerHTML = `
+        <div class="rp-empty">
+          <div class="empty-icon">💬</div>
+          <h3>No reviews yet</h3>
+          <p>Be the first to review this NGO on the Reviews page!</p>
+        </div>
+      `;
+      return;
+    }
+
+    const statsHtml = `
+      <div class="rp-stats">
+        <span class="rp-avg-stars">${data.avg_stars}</span>
+        <div>
+          <div class="rp-stars-display">${'★'.repeat(Math.round(data.avg_stars))}${'☆'.repeat(5 - Math.round(data.avg_stars))}</div>
+          <div class="rp-count">${data.count} review${data.count > 1 ? 's' : ''}</div>
+        </div>
+      </div>
+    `;
+
+    const reviewsHtml = data.reviews.map(r => `
+      <div class="review-card">
+        <div class="rc-top">
+          <span class="rc-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</span>
+        </div>
+        <div class="rc-reviewer">
+          <div class="rc-reviewer-avatar">${r.reviewer.charAt(0).toUpperCase()}</div>
+          <strong>${r.reviewer}</strong>
+        </div>
+        <p class="rc-text">"${r.review_text}"</p>
+        <span class="rc-date">📅 ${r.created_at}</span>
+      </div>
+    `).join('');
+
+    body.innerHTML = statsHtml + '<div style="display:flex;flex-direction:column;gap:0.8rem;margin-top:1rem;">' + reviewsHtml + '</div>';
+
+  } catch (err) {
+    popup.querySelector('.rp-body').innerHTML = `
+      <div class="rp-empty">
+        <div class="empty-icon">⚠️</div>
+        <h3>Could not load reviews</h3>
+      </div>
+    `;
+  }
 }
