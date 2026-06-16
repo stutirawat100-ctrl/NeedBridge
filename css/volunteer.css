@@ -1,0 +1,353 @@
+/* volunteer.css — Get Involved page styles for NeedBridge */
+
+/* ─── HERO ───────────────────────────────────────── */
+.vol-hero {
+  background: linear-gradient(135deg, #1A6B80 0%, #0F4C5C 100%);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: white;
+}
+.vol-hero-inner h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.vol-hero-inner p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.82);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ─── TABS BAR ───────────────────────────────────── */
+.vol-tabs-bar {
+  background: white;
+  border-bottom: 2px solid #DDD8D0;
+  position: sticky;
+  top: 57px;
+  z-index: 90;
+}
+.vol-tabs-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 1.5rem;
+}
+.vol-tab {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #5A5A72;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+.vol-tab:hover { color: #0F4C5C; }
+.vol-tab.active {
+  color: #0F4C5C;
+  border-bottom-color: #0F4C5C;
+}
+
+/* ─── PAGE PANELS ────────────────────────────────── */
+.vol-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+.vol-intro {
+  font-size: 0.97rem;
+  color: #5A5A72;
+  line-height: 1.7;
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  border-left: 4px solid #F4A261;
+}
+
+/* ─── VOLUNTEER CARDS ────────────────────────────── */
+.vol-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(15,76,92,0.09);
+  border: 1px solid #DDD8D0;
+}
+.vol-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.vol-step-num {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #0F4C5C, #1A6B80);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.vol-card-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A1A2E;
+  margin-bottom: 0.15rem;
+}
+.vol-card-header p { font-size: 0.82rem; color: #5A5A72; }
+
+/* Category buttons */
+.vol-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+.vol-cat-btn {
+  padding: 0.85rem 1rem;
+  background: #F8F5F0;
+  border: 2px solid #DDD8D0;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1A1A2E;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+}
+.vol-cat-btn:hover { border-color: #0F4C5C; background: #E8F4F8; }
+.vol-cat-btn.selected {
+  border-color: #0F4C5C;
+  background: #E8F4F8;
+  color: #0F4C5C;
+  box-shadow: 0 0 0 3px rgba(15,76,92,0.12);
+}
+
+/* Help type buttons */
+.vol-help-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.vol-help-btn {
+  padding: 0.55rem 1rem;
+  background: #F8F5F0;
+  border: 1.5px solid #DDD8D0;
+  border-radius: 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1A1A2E;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.vol-help-btn:hover { border-color: #F4A261; background: #FFF3E8; }
+.vol-help-btn.selected {
+  border-color: #F4A261;
+  background: #FFF3E8;
+  color: #E07B3A;
+  font-weight: 700;
+}
+
+/* Form optional label */
+.form-optional { font-weight: 400; color: #9999AA; font-size: 0.8rem; }
+
+/* ─── RESULTS SECTION ────────────────────────────── */
+.vol-results-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1A1A2E;
+  margin-bottom: 0.4rem;
+}
+.vol-results-sub {
+  font-size: 0.88rem;
+  color: #5A5A72;
+  margin-bottom: 1.2rem;
+}
+
+/* NGO contact card */
+.vol-ngo-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #DDD8D0;
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(15,76,92,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.vol-ngo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15,76,92,0.12);
+}
+.vol-ngo-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0F4C5C;
+  margin-bottom: 0.3rem;
+}
+.vol-ngo-address {
+  font-size: 0.82rem;
+  color: #5A5A72;
+  margin-bottom: 0.9rem;
+}
+.vol-ngo-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.vol-cat-tag {
+  background: #E8F4F8;
+  color: #0F4C5C;
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+.vol-ngo-actions {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  border: none;
+}
+.btn-whatsapp:hover { background: #1da851; transform: translateY(-1px); }
+.btn-vol-call {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: #0F4C5C;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  border: 2px solid #0F4C5C;
+  transition: all 0.2s;
+}
+.btn-vol-call:hover { background: #E8F4F8; }
+
+/* Disclaimer */
+.vol-disclaimer {
+  background: #FFF9E6;
+  border: 1px solid #F4D085;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  font-size: 0.82rem;
+  color: #7A6000;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+/* ─── LEARN & AWARENESS ──────────────────────────── */
+.learn-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(15,76,92,0.09);
+  border: 1px solid #DDD8D0;
+}
+.learn-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 2rem;
+  color: white;
+}
+.lch-blue   { background: linear-gradient(135deg, #0F4C5C, #1A6B80); }
+.lch-amber  { background: linear-gradient(135deg, #C06020, #E07B3A); }
+.lch-green  { background: linear-gradient(135deg, #1B5E20, #2E7D32); }
+.lch-purple { background: linear-gradient(135deg, #4A1580, #6A3AA2); }
+
+.learn-icon { font-size: 2rem; }
+.learn-card-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.learn-body { padding: 1.8rem 2rem; }
+.learn-para {
+  font-size: 0.93rem;
+  color: #1A1A2E;
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+}
+.learn-subhead {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F4C5C;
+  margin-bottom: 0.7rem;
+}
+.learn-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+.learn-list li {
+  font-size: 0.88rem;
+  color: #1A1A2E;
+  line-height: 1.6;
+  padding-left: 1rem;
+  border-left: 3px solid #DDD8D0;
+}
+.learn-list li strong { color: #0F4C5C; }
+.learn-tip {
+  background: #E8F4F8;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+  color: #0F4C5C;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.learn-sources {
+  font-size: 0.75rem;
+  color: #9999AA;
+  text-align: center;
+  padding: 0.5rem;
+  line-height: 1.7;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .vol-card { padding: 1.4rem 1.1rem; }
+  .learn-body { padding: 1.2rem 1.1rem; }
+  .learn-card-header { padding: 1.2rem 1.1rem; }
+  .vol-ngo-actions { flex-direction: column; }
+  .btn-whatsapp, .btn-vol-call { justify-content: center; }
+  .vol-tab { font-size: 0.8rem; padding: 0.9rem 0.2rem; }
+  .vol-category-grid { grid-template-columns: 1fr 1fr; }
+}
