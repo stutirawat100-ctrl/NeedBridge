@@ -15,7 +15,9 @@ app = Flask(__name__)
 
 # ─── DATABASE CONFIG ─────────────────────────────────────────────
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///' + os.path.join(basedir, 'needbridge.db')).replace("postgres://", "postgresql://")
+git add .
+git commit -m "fix: switch to PostgreSQL for persistent reviews"
+git push
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
