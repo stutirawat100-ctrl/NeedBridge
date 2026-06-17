@@ -15,7 +15,7 @@
 NeedBridge is a free, no-registration web application that connects people in need with the right NGOs in Dehradun. A person describes what kind of help they need — in simple words, even Hindi-English mix — and the AI matching engine suggests the top 3 nearest, most relevant NGOs with contact details and a map.
 
 **Live Demo:** [https://needbridge-x1o1.onrender.com](https://needbridge-x1o1.onrender.com)  
-**GitHub:** [your-github-link-here]
+**GitHub:** [https://stutirawat100-ctrl.github.io/NeedBridge/]
 
 ---
 
