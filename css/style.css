@@ -557,6 +557,7 @@ body {
   border: 2px solid var(--border);
   margin-bottom: 2rem;
   box-shadow: var(--shadow);
+  display: none;
 }
 #map { width: 100%; height: 320px; background: transparent; }
 
